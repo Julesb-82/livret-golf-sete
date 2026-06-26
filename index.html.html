@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livret d'accueil — Le Domaine du Golf · Sète</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sea:    #1a6b7c;
+    --sea-light: #e8f4f7;
+    --sand:   #f5f0e8;
+    --terracotta: #c8603a;
+    --ink:    #1c2630;
+    --mist:   #7a9aab;
+    --white:  #ffffff;
+    --green:  #3a7d5c;
+    --green-light: #eaf4ee;
+    --yellow: #e8a020;
+    --yellow-light: #fdf4e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--sea);
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 1rem 1rem;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  nav a:hover { color: #fff; border-bottom-color: var(--terracotta); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--sea) 0%, #0d4a58 60%, #1a3a45 100%);
+    color: white;
+    padding: 4rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200'%3E%3Cpath d='M0 120 Q150 60 300 120 Q450 180 600 120 L600 200 L0 200Z' fill='rgba(255,255,255,0.04)'/%3E%3Cpath d='M0 140 Q150 80 300 140 Q450 200 600 140 L600 200 L0 200Z' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") bottom/cover no-repeat;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .hero-sub {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 2rem;
+  }
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.9);
+    border-radius: 2rem;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 3rem 1.5rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  section + section {
+    border-top: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 600;
+    color: var(--sea);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  p { color: #3d4f59; margin-bottom: 0.75rem; }
+
+  /* ── CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem 1.25rem 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* ── HORAIRES ── */
+  .time-block {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .time-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--sea);
+    line-height: 1;
+    min-width: 80px;
+  }
+  .time-label { font-size: 0.85rem; color: #3d4f59; }
+  .time-title { font-weight: 500; font-size: 0.95rem; }
+
+  /* ── RÈGLES ── */
+  .rule-list { list-style: none; }
+  .rule-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 0.9rem;
+    color: #3d4f59;
+  }
+  .rule-list li:last-child { border-bottom: none; }
+  .rule-icon { flex-shrink: 0; font-size: 1rem; margin-top: 2px; }
+
+  /* ── ÉQUIPEMENTS ── */
+  .equip-group { margin-bottom: 1.5rem; }
+  .equip-group h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mist);
+    margin-bottom: 0.6rem;
+  }
+  .equip-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    background: var(--sea-light);
+    color: var(--sea);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2rem;
+    font-weight: 500;
+  }
+
+  /* ── PISCINE ── */
+  .pool-banner {
+    background: linear-gradient(135deg, var(--sea) 0%, #0f5066 100%);
+    color: white;
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    margin-top: 0.5rem;
+  }
+  .pool-banner h3 {
+    color: white;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .pool-banner p { color: rgba(255,255,255,0.78); margin-bottom: 0.3rem; }
+
+  /* ── ACTIVITÉS ── */
+  .activity-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .activity-row:last-child { border-bottom: none; }
+  .activity-emoji { font-size: 1.4rem; width: 32px; text-align: center; flex-shrink: 0; }
+  .activity-text { font-size: 0.88rem; color: #3d4f59; }
+  .activity-text strong { display: block; color: var(--ink); font-weight: 500; font-size: 0.92rem; }
+
+  /* ── TRANSPORTS ── */
+  .transport-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .transport-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .transport-card .t-icon { font-size: 1.3rem; }
+  .transport-card .t-text { font-size: 0.82rem; color: #3d4f59; line-height: 1.4; }
+  .transport-card .t-text strong { display: block; color: var(--ink); font-size: 0.88rem; }
+
+  /* ── ÉCO-GESTES ── */
+  .eco-section { background: var(--green-light); border-radius: 16px; padding: 2rem 1.5rem; }
+  .eco-section h2 { color: var(--green); }
+  .eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .eco-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 1rem 0.85rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .eco-card .e-icon { font-size: 1.4rem; display: block; margin-bottom: 0.4rem; }
+  .eco-card h3 { font-size: 0.88rem; color: var(--green); margin-bottom: 0.3rem; }
+  .eco-card p { font-size: 0.8rem; margin: 0; color: #456955; }
+
+  /* ── TRI ── */
+  .tri-section { background: var(--yellow-light); border-radius: 16px; padding: 2rem 1.5rem; }
+  .tri-section h2 { color: #7a5500; }
+  .tri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .bin {
+    border-radius: 12px;
+    padding: 1rem 1rem 0.85rem;
+    border-top: 5px solid;
+  }
+  .bin-jaune { background: #fff9e6; border-color: #f0c030; }
+  .bin-verte  { background: #f0f7f0; border-color: #3a9e50; }
+  .bin-grise  { background: #f5f5f5; border-color: #888; }
+  .bin-bleue  { background: #e8f0fb; border-color: #3060c8; }
+  .bin h3 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .bin ul { list-style: none; padding: 0; }
+  .bin ul li { font-size: 0.77rem; color: #444; padding: 0.15rem 0; }
+  .bin ul li::before { content: '· '; }
+
+  /* ── DÉPART ── */
+  .depart-checklist { list-style: none; }
+  .depart-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 0.88rem;
+    color: #3d4f59;
+  }
+  .depart-checklist li:last-child { border-bottom: none; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--sea);
+    border-radius: 5px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--sea);
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .check-box.done { background: var(--sea); color: white; }
+
+  /* ── CONTACT ── */
+  .contact-block {
+    background: var(--sea);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    color: white;
+    margin-top: 0.75rem;
+  }
+  .contact-block h3 { color: white; margin-bottom: 0.25rem; }
+  .contact-block p { color: rgba(255,255,255,0.72); font-size: 0.88rem; margin-bottom: 0; }
+  .contact-block a { color: #7dd5e8; text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.78rem;
+  }
+  footer span { color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 480px) {
+    nav a { padding: 0.85rem 0.75rem; font-size: 0.72rem; }
+    .time-num { font-size: 1.6rem; min-width: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#bienvenue">Bienvenue</a>
+  <a href="#horaires">Arrivée</a>
+  <a href="#logement">Logement</a>
+  <a href="#piscine">Piscine</a>
+  <a href="#activites">Activités</a>
+  <a href="#transports">Transports</a>
+  <a href="#eco">Éco-gestes</a>
+  <a href="#tri">Tri sélectif</a>
+  <a href="#depart">Départ</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Livret d'accueil · Sète, Hérault</p>
+  <h1>Le Domaine du Golf</h1>
+  <p class="hero-sub">Montée des Pierres Blanches · 34200 Sète</p>
+  <div class="hero-pills">
+    <span class="pill">🌊 Vue mer</span>
+    <span class="pill">🏊 Piscine partagée</span>
+    <span class="pill">🏖️ Plage à 800 m</span>
+    <span class="pill">🚗 Garage privé</span>
+    <span class="pill">🍽️ Terrasse 17 m²</span>
+  </div>
+</div>
+
+<!-- BIENVENUE -->
+<section id="bienvenue">
+  <span class="section-label">01 · Bienvenue</span>
+  <h2>Bon séjour à Sète !</h2>
+  <p>Nous sommes ravis de vous accueillir dans cet appartement de 42 m² avec vue sur la mer, niché sur les hauteurs de Sète. Ce livret regroupe toutes les informations utiles pour profiter pleinement de votre séjour.</p>
+  <p>En cas de question, notre équipe est disponible 7j/7. N'hésitez pas à nous contacter.</p>
+  <div class="card-grid" style="margin-top:1.25rem;">
+    <div class="card">
+      <span class="card-icon">🛏️</span>
+      <h3>2 chambres</h3>
+      <p style="font-size:0.83rem;margin:0;">1 lit double (140×190) + 1 chambre cabine avec lits superposés</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">👥</span>
+      <h3>Jusqu'à 4 personnes</h3>
+      <p style="font-size:0.83rem;margin:0;">Idéal pour une famille ou un groupe d'amis</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📐</span>
+      <h3>42 m²</h3>
+      <p style="font-size:0.83rem;margin:0;">Séjour 24 m² · Terrasse 17 m² · 1er étage avec ascenseur</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARRIVÉE & DÉPART -->
+<section id="horaires">
+  <span class="section-label">02 · Arrivée & départ</span>
+  <h2>Vos horaires</h2>
+
+  <div class="time-block">
+    <div class="time-num">16h–20h</div>
+    <div>
+      <div class="time-title">🔑 Arrivée</div>
+      <div class="time-label">Un accueil personnalisé vous attend dans cette plage horaire. Toute arrivée hors horaires est soumise à disponibilité et peut entraîner un supplément.</div>
+    </div>
+  </div>
+  <div class="time-block">
+    <div class="time-num">avant 11h</div>
+    <div>
+      <div class="time-title">👋 Départ</div>
+      <div class="time-label">Merci de remettre les clés avant 11h00. Pensez à prévenir la conciergerie de votre heure de départ.</div>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top:0.5rem;">
+    <div class="card">
+      <span class="card-icon">💳</span>
+      <h3>Dépôt de garantie</h3>
+      <p style="font-size:0.83rem;margin:0;">200 € · Restitué après état des lieux de sortie</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🏠</span>
+      <h3>Linge de maison</h3>
+      <p style="font-size:0.83rem;margin:0;">Draps et serviettes disponibles en supplément auprès du gestionnaire local</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGEMENT -->
+<section id="logement">
+  <span class="section-label">03 · Le logement</span>
+  <h2>Votre appartement</h2>
+  <p>Tout ce dont vous avez besoin pour un séjour confortable, du café du matin au repas en terrasse avec vue sur la Méditerranée.</p>
+
+  <div class="equip-group">
+    <h3>🍳 Cuisine</h3>
+    <div class="equip-tags">
+      <span class="tag">Plaques de cuisson</span>
+      <span class="tag">Micro-ondes</span>
+      <span class="tag">Grille-pain</span>
+      <span class="tag">Bouilloire</span>
+      <span class="tag">Cafetière</span>
+      <span class="tag">Lave-vaisselle</span>
+      <span class="tag">Réfrigérateur</span>
+      <span class="tag">Vaisselle & couverts</span>
+    </div>
+  </div>
+  <div class="equip-group">
+    <h3>🛋️ Confort</h3>
+    <div class="equip-tags">
+      <span class="tag">TV</span>
+      <span class="tag">Wi-Fi fibre</span>
+      <span class="tag">Lave-linge</span>
+      <span class="tag">Ventilateur</span>
+      <span class="tag">Fer à repasser</span>
+      <span class="tag">Sèche-cheveux</span>
+      <span class="tag">Lit bébé disponible</span>
+      <span class="tag">Terrasse 17 m²</span>
+    </div>
+  </div>
+  <div class="equip-group">
+    <h3>🍖 Extérieur</h3>
+    <div class="equip-tags">
+      <span class="tag">Plancha électrique</span>
+      <span class="tag">Mobilier de terrasse</span>
+      <span class="tag">Vue mer panoramique</span>
+    </div>
+  </div>
+  <div class="equip-group">
+    <h3>🔒 Sécurité</h3>
+    <div class="equip-tags">
+      <span class="tag">Extincteur</span>
+      <span class="tag">Détecteur de fumée</span>
+      <span class="tag">Détecteur CO₂</span>
+      <span class="tag">Interphone</span>
+      <span class="tag">Boîte à clés</span>
+    </div>
+  </div>
+
+  <ul class="rule-list" style="margin-top:1rem;">
+    <li><span class="rule-icon">🚬</span>L'appartement est entièrement non-fumeur (terrasse incluse).</li>
+    <li><span class="rule-icon">🐾</span>Les animaux de compagnie ne sont pas acceptés.</li>
+    <li><span class="rule-icon">🔊</span>La route à proximité peut générer du bruit, notamment en soirée. Nous vous conseillons de fermer les baies vitrées la nuit.</li>
+    <li><span class="rule-icon">🧹</span>Merci de nettoyer les appareils électroménagers après usage et de laisser l'appartement en bon état de propreté.</li>
+  </ul>
+</section>
+
+<!-- PISCINE -->
+<section id="piscine">
+  <span class="section-label">04 · Piscine</span>
+  <h2>Espace aquatique</h2>
+  <div class="pool-banner">
+    <h3>🏊 Piscine partagée de la résidence</h3>
+    <p>⏰ Ouverte de 9h à 21h · De mai à fin septembre</p>
+    <p>📅 Les dates d'ouverture sont non contractuelles et soumises aux conditions météo.</p>
+    <p style="margin-top:0.75rem; color:rgba(255,255,255,0.9);">La piscine est gérée par la copropriété. Son règlement intérieur s'applique à tous les résidents et vacanciers.</p>
+  </div>
+  <ul class="rule-list" style="margin-top:1rem;">
+    <li><span class="rule-icon">👨‍👧</span>La baignade des enfants est placée sous la responsabilité d'un adulte à tout moment.</li>
+    <li><span class="rule-icon">🩱</span>Tenue de bain conforme au règlement de la résidence obligatoire.</li>
+    <li><span class="rule-icon">🚿</span>Une douche avant d'entrer dans le bassin est recommandée.</li>
+    <li><span class="rule-icon">🍹</span>Pas de verre ni de bouteille en verre au bord du bassin.</li>
+  </ul>
+</section>
+
+<!-- ACTIVITÉS -->
+<section id="activites">
+  <span class="section-label">05 · Aux alentours</span>
+  <h2>Ce qu'il y a à faire</h2>
+
+  <div class="activity-row">
+    <span class="activity-emoji">🏖️</span>
+    <div class="activity-text">
+      <strong>Plage des Quilles</strong>
+      À 800 m à pied — La plus proche et l'une des plus belles de Sète.
+    </div>
+  </div>
+  <div class="activity-row">
+    <span class="activity-emoji">🚣</span>
+    <div class="activity-text">
+      <strong>Sports nautiques</strong>
+      Location de bateau, jet ski, kayak, paddle, pédalo — accessibles à pied depuis la plage.
+    </div>
+  </div>
+  <div class="activity-row">
+    <span class="activity-emoji">🚴</span>
+    <div class="activity-text">
+      <strong>Piste cyclable</strong>
+      Dans les dunes entre Sète et Marseillan Plage — idéal pour le vélo, roller et balade.
+    </div>
+  </div>
+  <div class="activity-row">
+    <span class="activity-emoji">🥾</span>
+    <div class="activity-text">
+      <strong>Pierres Blanches & Garrigue</strong>
+      Site naturel exceptionnel à 10 min à pied — panorama 360° sur la mer et l'étang de Thau.
+    </div>
+  </div>
+  <div class="activity-row">
+    <span class="activity-emoji">🎭</span>
+    <div class="activity-text">
+      <strong>Culture sétoise</strong>
+      Musée Paul Valéry · Espace Georges Brassens · Joutes sétoires · Marché des Halles.
+    </div>
+  </div>
+  <div class="activity-row">
+    <span class="activity-emoji">🍽️</span>
+    <div class="activity-text">
+      <strong>Commerces & restaurants</strong>
+      Boutiques, bars, restaurants et marché à moins d'1 km. Tielle sétoise et tioro à goûter absolument !
+    </div>
+  </div>
+  <div class="activity-row">
+    <span class="activity-emoji">🎾</span>
+    <div class="activity-text">
+      <strong>Tennis</strong>
+      Terrain de tennis disponible au sein de la résidence.
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORTS -->
+<section id="transports">
+  <span class="section-label">06 · Transports</span>
+  <h2>Se déplacer</h2>
+  <div class="transport-cards">
+    <div class="transport-card">
+      <span class="t-icon">🚗</span>
+      <div class="t-text"><strong>Garage privé</strong>15 m² fermé et sécurisé inclus — prise électrique pour vélo à batterie</div>
+    </div>
+    <div class="transport-card">
+      <span class="t-icon">🚌</span>
+      <div class="t-text"><strong>Bus</strong>Arrêt juste devant la résidence. Ligne desservant le centre de Sète.</div>
+    </div>
+    <div class="transport-card">
+      <span class="t-icon">🚂</span>
+      <div class="t-text"><strong>Gare de Sète</strong>À environ 3 km. TGV et TER pour toute la région.</div>
+    </div>
+    <div class="transport-card">
+      <span class="t-icon">✈️</span>
+      <div class="t-text"><strong>Aéroport Montpellier</strong>À environ 39 km — accès rapide via l'A9.</div>
+    </div>
+    <div class="transport-card">
+      <span class="t-icon">🅿️</span>
+      <div class="t-text"><strong>Parking public</strong>Parking gratuit et payant à proximité de la résidence.</div>
+    </div>
+    <div class="transport-card">
+      <span class="t-icon">⚡</span>
+      <div class="t-text"><strong>Borne de recharge VE</strong>Disponible sur la résidence pour véhicule électrique.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉCO-GESTES -->
+<section id="eco" style="padding: 2rem 1.5rem;">
+  <div class="eco-section">
+    <span class="section-label" style="color:#3a7d5c;">07 · Planète</span>
+    <h2>Nos éco-gestes</h2>
+    <p style="color:#456955;">Sète est une ville d'eau et de nature — aidons-nous à la préserver ! Quelques réflexes simples pour un séjour plus vert.</p>
+    <div class="eco-grid">
+      <div class="eco-card">
+        <span class="e-icon">💧</span>
+        <h3>Eau</h3>
+        <p>Coupez l'eau pendant la douche et le brossage des dents. Préférez des douches courtes à la baignoire.</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">💡</span>
+        <h3>Énergie</h3>
+        <p>Éteignez les lumières en quittant une pièce. Débranchez les appareils en veille.</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">🌡️</span>
+        <h3>Climatisation</h3>
+        <p>L'appartement n'est pas climatisé. Aérez tôt le matin et fermez volets et baies vitrées en journée pour garder la fraîcheur.</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">🧺</span>
+        <h3>Linge</h3>
+        <p>Lancez le lave-linge plein et de nuit (heures creuses). Préférez l'étendoir au sèche-linge.</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">🛒</span>
+        <h3>Courses</h3>
+        <p>Utilisez des sacs réutilisables. Privilégiez les produits locaux — le marché de Sète est à côté !</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">🌊</span>
+        <h3>Plage</h3>
+        <p>Ne laissez rien sur la plage. La mer Méditerranée est fragile — protégez-la.</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">🚴</span>
+        <h3>Mobilité</h3>
+        <p>Privilégiez le bus ou le vélo pour explorer Sète. L'arrêt est juste devant la résidence.</p>
+      </div>
+      <div class="eco-card">
+        <span class="e-icon">🧴</span>
+        <h3>Produits</h3>
+        <p>Utilisez des produits biodégradables, surtout à la mer et à la piscine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRI SÉLECTIF -->
+<section id="tri" style="padding: 2rem 1.5rem;">
+  <div class="tri-section">
+    <span class="section-label" style="color:#7a5500;">08 · Tri sélectif</span>
+    <h2>Les poubelles</h2>
+    <p style="color:#5a4000;">Le local poubelles est accessible au rez-de-chaussée de la résidence. Merci de respecter le tri — c'est simple !</p>
+    <div class="tri-grid">
+      <div class="bin bin-jaune">
+        <h3>🟡 Bac jaune — Recyclables</h3>
+        <ul>
+          <li>Bouteilles plastique</li>
+          <li>Canettes métal</li>
+          <li>Cartons & emballages</li>
+          <li>Briques alimentaires</li>
+          <li>Journaux & papiers</li>
+        </ul>
+      </div>
+      <div class="bin bin-verte">
+        <h3>🟢 Bac vert — Verre</h3>
+        <ul>
+          <li>Bouteilles en verre</li>
+          <li>Bocaux & pots</li>
+          <li>Flacons en verre</li>
+          <li>⚠️ Pas de miroirs</li>
+          <li>⚠️ Pas de vaisselle</li>
+        </ul>
+      </div>
+      <div class="bin bin-grise">
+        <h3>⚫ Bac gris — Ordures</h3>
+        <ul>
+          <li>Déchets alimentaires</li>
+          <li>Plastiques non recyclables</li>
+          <li>Emballages souillés</li>
+          <li>Lingettes & cotons</li>
+          <li>Reste non trié</li>
+        </ul>
+      </div>
+      <div class="bin bin-bleue">
+        <h3>🔵 Déchèterie</h3>
+        <ul>
+          <li>Piles & batteries</li>
+          <li>Médicaments</li>
+          <li>Ampoules</li>
+          <li>Appareils électroniques</li>
+          <li>Huiles de cuisson</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1rem; font-size:0.82rem; color:#7a5500;">💡 Astuce : les pharmacies reprennent les médicaments, et certains supermarchés ont des bacs pour piles et cartouches d'encre.</p>
+  </div>
+</section>
+
+<!-- DÉPART -->
+<section id="depart">
+  <span class="section-label">09 · Départ</span>
+  <h2>Checklist avant de partir</h2>
+  <p style="margin-bottom:1rem;">Avant de quitter l'appartement, pensez à vérifier ces quelques points :</p>
+  <ul class="depart-checklist" id="checklist">
+    <li><div class="check-box" onclick="toggle(this)"></div>Nettoyez les appareils de cuisine (plaques, micro-ondes, plancha, lave-vaisselle)</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Videz le réfrigérateur et jetez les aliments périssables</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Prenez les sacs poubelle au local poubelles de la résidence</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Vérifiez que toutes les fenêtres et baies vitrées sont fermées</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Éteignez toutes les lumières et appareils électriques</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Remettez les meubles et équipements à leur place</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Assurez-vous de ne rien oublier (effets personnels, chargeurs…)</li>
+    <li><div class="check-box" onclick="toggle(this)"></div>Rendez les clés à la personne désignée avant 11h</li>
+  </ul>
+  <p style="margin-top:1rem; font-size:0.83rem; color:#3d4f59;">Le ménage de fin de séjour est inclus, mais un logement laissé en état correct est toujours apprécié 🙏</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-label">10 · Contact</span>
+  <h2>Besoin d'aide ?</h2>
+  <p>Notre équipe est disponible 7j/7 pour répondre à toutes vos questions pendant le séjour.</p>
+  <div class="contact-block">
+    <h3>📞 Conciergerie locale — Book&Pay</h3>
+    <p>Intendance sur place pour toute demande urgente pendant votre séjour.</p>
+  </div>
+  <div class="contact-block" style="margin-top:0.75rem; background: #2a4a58;">
+    <h3>💬 Service client Cocoonr</h3>
+    <p>Disponible 7j/7 en ligne · <a href="https://cocoonr.fr/apropos/contact/">cocoonr.fr/contact</a></p>
+    <p>Numéro d'enregistrement du logement : <strong style="color:white;">34301001398EB</strong></p>
+  </div>
+  <div style="margin-top:1.5rem; padding:1.25rem; background:white; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+    <h3 style="margin-bottom:0.4rem;">⭐ Laissez un avis</h3>
+    <p style="font-size:0.85rem; margin:0;">Votre retour compte pour nous et pour les futurs voyageurs. Merci de partager votre expérience sur Cocoonr, Airbnb ou Booking à la fin de votre séjour.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Le Domaine du Golf · Sète</span><br>
+  Montée des Pierres Blanches, 34200 Sète · Livret d'accueil digital
+</footer>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('done');
+    el.textContent = el.classList.contains('done') ? '✓' : '';
+  }
+</script>
+
+</body>
+</html>
